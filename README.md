@@ -54,7 +54,7 @@ The `mp3DownloadUrl` key is a string containing a URL to the MP3 file of the con
 The `audioStatusUrl` key is a string containing a URL to check the status of the conversion process. The `audioStatusUrl` can be used to check the current status of the conversion process.
 
 ### credit
-The `credit` key is a string containing the name or other identifier of the speaker. This can be useful when using multiple speakers or when the speaker is important for the use case. The `credit` key is required to be displayed when the converted speech is used publicly, such as in a video or audio recording. The credit string should be displayed in a visible and readable manner, such as in the credits section or as a voiceover. If the converted speech is not used publicly, the credit string may be omitted.
+The `credit` key is a string containing the name or other identifier of the speaker. This can be useful when using multiple speakers or when the speaker is important for the use case. The `credit` key is required to be displayed when the converted speech is used publicly. Terms and conditions of VOICEVOX and its voice characters apply.
 
 ## Error Handling
 The API will return error responses in JSON format with a status code indicating the error. The following error codes and messages will be returned:
