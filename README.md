@@ -1,13 +1,11 @@
 # ttsQuestVVDDD
 Detailed Design Document of tts.quest voicevox v3 api
 
-# tts.quest VOICEVOX v3 API DDD
-
-## Introduction
-This document provides a detailed design of a Text-to-Speech (TTS) API, which will convert text into speech using pre-defined voices. The API endpoint will be `https://api.tts.quest/v3/voicevox/synthesize`, which will accept text, speaker, and key as parameters. The response will be in JSON format, including links to WAV and MP3 files. Additionally, the response will include a link to check the status of the conversion process.
+## tts.quest VOICEVOX v3 API
+This document provides a detailed design of a Text-to-Speech (TTS) API, which will convert text into speech using pre-defined voices. The API endpoint will be `https://api.tts.quest/v3/voicevox/synthesis`, which will accept text, speaker, and key as parameters. The response will be in JSON format, including links to WAV and MP3 files. Additionally, the response will include a link to check the status of the conversion process.
 
 ## API Endpoint
-The API endpoint is `https://api.tts.quest/v3/voicevox/synthesize`. It accepts GET or POST requests with the following parameters:
+The API endpoint is `https://api.tts.quest/v3/voicevox/synthesis`. It accepts GET or POST requests with the following parameters:
 
 - `text`: A string containing the text to be converted to speech.
 - `speaker`: An integer representing the speaker to be used for the conversion. The integer should be a valid ID for one of the pre-defined speakers available in the API.
