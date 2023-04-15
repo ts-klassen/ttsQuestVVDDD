@@ -4,14 +4,16 @@ Detailed Design Document of tts.quest voicevox v3 api
 # tts.quest VOICEVOX v3 API DDD
 
 ## Introduction
-This document provides a detailed design of a Text-to-Speech (TTS) API, which will convert text into speech using pre-defined voices. The API endpoint will be `https://api.tts.quest/v3/voicevox/`, which will accept text, speaker, and key as parameters. The response will be in JSON format, including links to WAV and MP3 files. Additionally, the response will include a link to check the status of the conversion process.
+This document provides a detailed design of a Text-to-Speech (TTS) API, which will convert text into speech using pre-defined voices. The API endpoint will be `https://api.tts.quest/v3/voicevox/synthesize`, which will accept text, speaker, and key as parameters. The response will be in JSON format, including links to WAV and MP3 files. Additionally, the response will include a link to check the status of the conversion process.
 
 ## API Endpoint
-The API endpoint is `https://api.tts.quest/v3/voicevox/`. It accepts GET requests with the following parameters:
+The API endpoint is `https://api.tts.quest/v3/voicevox/synthesize`. It accepts GET or POST requests with the following parameters:
 
 - `text`: A string containing the text to be converted to speech.
 - `speaker`: An integer representing the speaker to be used for the conversion. The integer should be a valid ID for one of the pre-defined speakers available in the API.
 - `key`: A string containing the API key required for authentication purposes.
+
+If using POST method, `content-type` must be `application/x-www-form-urlencoded`.
 
 ## Request Parameters
 
@@ -40,18 +42,14 @@ The API will respond with an HTTP status code and a response body in JSON format
 ### success
 The `success` key is a boolean indicating whether the request was successful or not. This key will be set to `true` when the HTTP status code is 200 and the response body contains valid data. Otherwise, it will be set to `false`.
 
-- `processing`: The conversion process is in progress, and the links to the WAV and MP3 files may not be immediately available.
-- `completed`: The conversion process has been completed successfully, and the links to the WAV and MP3 files are available.
-- `failed`: The conversion process has failed, and the links to the WAV and MP3 files will not be available.
-
 ### wavDownloadUrl
-The `wavDownloadUrl` key is a string containing a URL to the WAV file of the converted speech. This URL may not be immediately available depending on the processing status.
+The `wavDownloadUrl` key is a string containing a URL to the WAV file of the converted speech. This URL may not be immediately available depending on the processing status. Explained [here](/audio.md).
 
 ### mp3DownloadUrl
-The `mp3DownloadUrl` key is a string containing a URL to the MP3 file of the converted speech. This URL may not be immediately available depending on the processing status.
+The `mp3DownloadUrl` key is a string containing a URL to the MP3 file of the converted speech. This URL may not be immediately available depending on the processing status. Explained [here](/audio.md).
 
 ### audioStatusUrl
-The `audioStatusUrl` key is a string containing a URL to check the status of the conversion process. The `audioStatusUrl` can be used to check the current status of the conversion process.
+The `audioStatusUrl` key is a string containing a URL to check the status of the conversion process. The `audioStatusUrl` can be used to check the current status of the conversion process. Explained [here](/status.md).
 
 ### credit
 The `credit` key is a string containing the name or other identifier of the speaker. This can be useful when using multiple speakers or when the speaker is important for the use case. The `credit` key is required to be displayed when the converted speech is used publicly. Terms and conditions of VOICEVOX and its voice characters apply.
@@ -64,3 +62,12 @@ The API will return error responses in JSON format with a status code indicating
 - `413 Payload Too Large`: The request is too large, such as when the text parameter is too long.
 - `429 Too Many Requests`: The user has exceeded the rate limit for the API.
 - `5xx Server Error`: An unexpected error occurred while processing the request. This could be due to a problem with the API server or the load balancer.
+
+## Encoding
+The API will support UTF-8 encoding for text inputs.
+
+## Supported Speakers
+The supported speakers for the Voicevox API can be obtained by sending a GET request to the endpoint `https://api.tts.quest/v3/voicevox/speakers`. The response will be a JSON object that contains information about each speaker, including their ID and name. Explained [here](/speakers.md).
+
+## Rate Limiting
+Each API key has points. Explained [here](/points.md).
