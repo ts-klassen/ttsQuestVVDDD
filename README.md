@@ -68,4 +68,4 @@ The API will support UTF-8 encoding for text inputs.
 The supported speakers for the Voicevox API can be obtained by sending a GET request to the endpoint `https://api.tts.quest/v3/voicevox/speakers`. The response will be a JSON object that contains information about each speaker, including their ID and name. Explained [here](/speakers.md).
 
 ## Rate Limiting
-Each API key has points. Explained [here](/points.md).
+Each API key has points. Explained [here](/apikey.md).
